@@ -1,0 +1,14 @@
+
+exec slstatus &
+
+xrandr --output Screen-0 --mode 1366x768 &
+
+picom -f &
+
+nitrogen --restore &
+
+while true; do
+	dwm >/dev/null 2>&1
+done
+
+exec dwm

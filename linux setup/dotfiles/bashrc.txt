@@ -1,0 +1,74 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+ neofetch
+ HISTSIZE= HISTFILESIZE= #infinite history
+
+ set -o vi
+ shopt -s autocd #type directory name
+ stty -ixon #disable ^s and ^q
+ 
+ alias prems='groff -ms bmedsba.ms -Tpdf | zathura - &'
+
+ #brightness binds
+ bind '"\e[23~":"sudo brightnessctl s 10%-\n"'
+ bind '"\e[24~":"sudo brightnessctl s 10%+\n"'
+ bind '"C":"exit\n"'
+
+ alias bootparrot='cd ~/qemu && qemu-system-x86_64 -enable-kvm -boot menu=on -drive file=Parrot.img -m 4G'
+ alias dim='sudo brightnessctl s 90%-'
+ #basics
+ alias v='vim'
+ alias s='sudo'
+ alias sv='sudo -E vim'
+ alias nv='nvim'
+ alias ll='ls -lah'
+ alias rm='rm -v'
+ alias cp='cp -iv'
+ alias mv='mv -iv'
+ alias d='mkdir -pv'
+ alias vim=nvim
+ alias ls='ls -hN --color=auto --group-directories-first'
+ alias grep='grep --color=auto'
+
+ #config files
+ alias brc='nvim $HOME/.bashrc'
+ alias nvrc='nvim $HOME/.config/nvim'
+ alias xrc='nvim $HOME/.xinitrc'
+ 
+ # Pacman 
+ alias p='sudo pacman'
+ alias pain='sudo pacman -Syv --color always'
+ alias pay='sudo pacman -Syyu'
+ alias par='sudo pacman -Rsu' 
+
+ #system commands
+ alias rs='sudo reboot'
+ alias po='sudo poweroff now'
+ 
+ #git shit
+ alias g='git'
+ alias clone='git clone'
+ alias branch='git branch'
+ alias commit='git commit'
+ alias checko='git checkout'
+ alias merge='git merge'
+
+
+
+#install stuff
+ alias c='make && sudo make clean install'
+
+#clean master branch suckless utils
+ alias newconfigh='make clean && rm -f config.h && git reset --hard origin/master'
+
+
+# prompt
+# PS1='[\u@\h \W]\$ '/
+#prompt from scriptim.github.io
+# PS1='\[\e[0;1;92m\][\[\e[0;2;92m\][\[\e[0;92m\]\u\[\e[0;92m\]$\[\e[0;38;5;220m\]^\[\e[0;38;5;220m\]$\[\e[0;38;5;220m\]\H\[\e[0;2;92m\]]\[\e[0;1;92m\]]\n\[\e[0;91m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0;1;38;5;46m\]\w \[\e[0;38;5;220m\]\@ \[\e[0;38;5;220m\]\$ \[\e[0m\]'
+PS1='\[\e[0;1m\]{ \[\e[0;91m\]\u \[\e[0;32m\]<\[\e[0;32m\]$\[\e[0;32m\]> \[\e[0;91m\]\w \[\e[0;1m\]}\[\e[0;38;5;246m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0m\]\$ \[\e[0m\]'
